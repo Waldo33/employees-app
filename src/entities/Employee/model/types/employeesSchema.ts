@@ -1,13 +1,19 @@
-import { Employee } from 'entities/Employee/model/types/employee';
+import { Employee, EmployeeRole } from 'entities/Employee/model/types/employee';
 
-export type SortKeys = Pick<Employee, 'name' | 'birthday'>
-export type SortTypes = 'desc' | 'asc'
+export type SortType = keyof Pick<Employee, 'name' | 'birthday'>
+export type SortOrder = 'desc' | 'asc'
 
 export interface EmployeesSchema {
     data?: Employee[];
-    filteredData?: Employee[];
     isLoading: boolean;
     error?: string;
-    sort: Record<keyof SortKeys, SortTypes>;
+    sort: {
+        type: SortType;
+        order: SortOrder;
+    };
+    filters: {
+        role?: EmployeeRole;
+        isArchive: boolean;
+    }
     searchQuery: string;
 }

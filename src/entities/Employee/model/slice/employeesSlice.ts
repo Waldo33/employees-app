@@ -1,17 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchEmployees } from 'entities/Employee/model/services/fetchEmployees/fetchEmployees';
-import { Employee } from 'entities/Employee/model/types/employee';
-import { formatStringToDate } from 'shared/lib/formatStringToDate/formatStringToDate';
-import { EmployeesSchema } from '../types/employeesSchema';
+import { Employee, EmployeeRole } from 'entities/Employee/model/types/employee';
+import { EmployeesSchema, SortOrder, SortType } from '../types/employeesSchema';
 
 const initialState: EmployeesSchema = {
     isLoading: false,
     error: undefined,
     data: undefined,
-    filteredData: undefined,
     sort: {
-        name: 'desc',
-        birthday: 'desc',
+        type: 'name',
+        order: 'desc',
+    },
+    filters: {
+        role: undefined,
+        isArchive: false,
     },
     searchQuery: '',
 };
@@ -20,14 +22,20 @@ export const employeesSlice = createSlice({
     name: 'employees',
     initialState,
     reducers: {
-        toggleSortByName: (state) => {
-            state.sort.name = state.sort.name === 'desc' ? 'asc' : 'desc';
+        setSortType: (state, action: PayloadAction<SortType>) => {
+            state.sort.type = action.payload;
         },
-        toggleSortByBirthday: (state) => {
-            state.sort.birthday = state.sort.birthday === 'desc' ? 'asc' : 'desc';
+        setSortOrder: (state, action: PayloadAction<SortOrder>) => {
+            state.sort.order = action.payload;
         },
         setSearchQuery: (state, action: PayloadAction<string>) => {
             state.searchQuery = action.payload;
+        },
+        setFilterRole: (state, action: PayloadAction<EmployeeRole>) => {
+            state.filters.role = action.payload;
+        },
+        setFilterIsArchive: (state, action: PayloadAction<boolean>) => {
+            state.filters.isArchive = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -39,7 +47,6 @@ export const employeesSlice = createSlice({
             .addCase(fetchEmployees.fulfilled, (state, action: PayloadAction<Employee[]>) => {
                 state.isLoading = false;
                 state.data = action.payload;
-                state.filteredData = action.payload;
             })
             .addCase(fetchEmployees.rejected, (state, action) => {
                 state.isLoading = false;
