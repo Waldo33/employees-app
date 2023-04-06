@@ -9,12 +9,17 @@ import cls from './EmployeeCard.module.scss';
 
 interface EmployeeCardProps {
     employee: Employee;
+    onClick?: () => void;
 }
 
 export const EmployeeCard: FC<EmployeeCardProps> = (props) => {
-    const { employee } = props;
+    const { employee, onClick } = props;
     return (
-        <Card className={classNames(cls.EmployeeCard, { [cls.isArchive]: employee.isArchive })} elevation={5}>
+        <Card
+            onClick={onClick}
+            className={classNames(cls.EmployeeCard, { [cls.isArchive]: employee.isArchive })}
+            elevation={5}
+        >
             <CardActionArea>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">

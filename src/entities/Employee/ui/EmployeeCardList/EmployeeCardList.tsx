@@ -1,8 +1,9 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { FC } from 'react';
 import { Employee } from 'entities/Employee/model/types/employee';
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { EmployeeCard } from 'entities/Employee/ui/EmployeeCard/EmployeeCard';
+import { useNavigate } from 'react-router-dom';
 import cls from './EmployeeCardList.module.scss';
 
 interface EmployeeCardListProps {
@@ -11,19 +12,35 @@ interface EmployeeCardListProps {
 }
 export const EmployeeCardList: FC<EmployeeCardListProps> = (props) => {
     const { employees, isLoading } = props;
+    const navigate = useNavigate();
+
+    if (isLoading) {
+        return (
+            <Box>
+                <Typography>Загрузка...</Typography>
+            </Box>
+        );
+    }
+
+    if (!employees?.length) {
+        return (
+            <Box>
+                <Typography>Список сотрудников пуст</Typography>
+            </Box>
+        );
+    }
 
     return (
         <Box>
             <Stack spacing={2}>
                 {
-                    employees?.length
-                        ? employees?.map((employee) => (
-                            <EmployeeCard
-                                key={employee.id}
-                                employee={employee}
-                            />
-                        ))
-                        : 'Нет сотрудников'
+                    employees.map((employee) => (
+                        <EmployeeCard
+                            onClick={() => navigate(`/${employee.id}`)}
+                            key={employee.id}
+                            employee={employee}
+                        />
+                    ))
                 }
             </Stack>
         </Box>

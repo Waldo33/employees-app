@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchEmployees } from 'entities/Employee/model/services/fetchEmployees/fetchEmployees';
 import { Employee, EmployeeRole } from 'entities/Employee/model/types/employee';
+import { StateSchema } from 'app/providers/StoreProvider';
 import { EmployeesSchema, SortOrder, SortType } from '../types/employeesSchema';
 
 const initialState: EmployeesSchema = {
@@ -16,11 +17,21 @@ const initialState: EmployeesSchema = {
         isArchive: false,
     },
     searchQuery: '',
+    ids: [],
+    entities: {},
 };
+
+const employeesAdapter = createEntityAdapter<Employee>({
+    selectId: (employee) => employee.id,
+});
+
+export const getEmployees = employeesAdapter.getSelectors<StateSchema>(
+    (state) => state.employees || employeesAdapter.getInitialState(),
+);
 
 export const employeesSlice = createSlice({
     name: 'employees',
-    initialState,
+    initialState: employeesAdapter.getInitialState<EmployeesSchema>(initialState),
     reducers: {
         setSortType: (state, action: PayloadAction<SortType>) => {
             state.sort.type = action.payload;
@@ -46,7 +57,7 @@ export const employeesSlice = createSlice({
             })
             .addCase(fetchEmployees.fulfilled, (state, action: PayloadAction<Employee[]>) => {
                 state.isLoading = false;
-                state.data = action.payload;
+                employeesAdapter.setAll(state, action.payload);
             })
             .addCase(fetchEmployees.rejected, (state, action) => {
                 state.isLoading = false;

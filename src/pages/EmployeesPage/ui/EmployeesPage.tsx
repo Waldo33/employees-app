@@ -1,25 +1,19 @@
 import {
-    AppBar,
     Box, Checkbox,
-    Container,
-    CssBaseline, Dialog, DialogTitle, Divider,
+    Dialog, DialogTitle, Divider,
     FormControl, FormControlLabel, IconButton, InputBase,
     InputLabel,
     MenuItem, Paper,
     Select,
     SelectChangeEvent,
     Stack,
-    TextField,
-    Toolbar,
-    Typography,
 } from '@mui/material';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import {
     EmployeeCardList, EmployeeRole,
-    employeesActions,
-    fetchEmployees, getEmployees,
-    getSearchQuery,
+    employeesActions, getEmployees,
+    getEmployeesIsLoading,
     getSort,
     SORT_TYPES,
     SortOrder,
@@ -33,14 +27,10 @@ import { getFilters } from 'entities/Employee/model/selectors/getFilters/getFilt
 export const EmployeesPage = () => {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useAppDispatch();
-    const employees = useSelector(getEmployees);
+    const employees = useSelector(getEmployees.selectAll);
     const sort = useSelector(getSort);
     const filters = useSelector(getFilters);
-    const query = useSelector(getSearchQuery);
-
-    useEffect(() => {
-        dispatch(fetchEmployees());
-    }, [dispatch, sort, query, filters]);
+    const isLoading = useSelector(getEmployeesIsLoading);
 
     const onOpenModal = () => {
         setShowModal(true);
@@ -69,129 +59,113 @@ export const EmployeesPage = () => {
     };
 
     return (
-        <div>
-            <CssBaseline />
-            <AppBar>
-                <Toolbar>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                    >
-                        Employees App
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <Container>
-                <Box component="main" sx={{ p: 2 }}>
-                    <Toolbar />
-                    <Dialog open={showModal} onClose={onCloseModal}>
-                        <DialogTitle>Настройки поиска</DialogTitle>
-                        <Box sx={{ px: 2, pb: 2 }}>
-                            <Stack sx={{ mb: 2 }} gap={2} direction={{ xs: 'column', sm: 'row' }}>
-                                <FormControl sx={{ minWidth: 120 }}>
-                                    <InputLabel id="sort-type">Сортировать</InputLabel>
-                                    <Select
-                                        labelId="sort-type"
-                                        value={sort.type}
-                                        label="Сортировать"
-                                        onChange={onChangeSortTypeHandler}
-                                    >
-                                        {
-                                            Object.entries(SORT_TYPES).map(([key, value]) => (
-                                                <MenuItem
-                                                    key={key}
-                                                    value={key}
-                                                >
-                                                    {value}
-                                                </MenuItem>
-                                            ))
-                                        }
-                                    </Select>
-                                </FormControl>
-                                <FormControl sx={{ minWidth: 120 }}>
-                                    <InputLabel id="sort-order">Порядок</InputLabel>
-                                    <Select
-                                        labelId="sort-order"
-                                        value={sort.order}
-                                        label="Порядок"
-                                        onChange={onChangeSortOrderHandler}
-                                    >
-                                        {
-                                            Object.entries(SORT_ORDERS).map(([key, value]) => (
-                                                <MenuItem
-                                                    key={key}
-                                                    value={key}
-                                                >
-                                                    {value}
-                                                </MenuItem>
-                                            ))
-                                        }
-                                    </Select>
-                                </FormControl>
-                            </Stack>
-                            <FormControl fullWidth sx={{ minWidth: 120 }}>
-                                <InputLabel id="sort-type">Должность</InputLabel>
-                                <Select
-                                    labelId="sort-type"
-                                    value={filters.role}
-                                    label="Должность"
-                                    onChange={onFilterRoleHandler}
-                                >
-                                    {
-                                        Object.entries(STRING_ROLES).map(([key, value]) => (
-                                            <MenuItem
-                                                key={key}
-                                                value={key}
-                                            >
-                                                {value}
-                                            </MenuItem>
-                                        ))
-                                    }
-                                    <MenuItem value={undefined}>
-                                        Любая
-                                    </MenuItem>
-                                </Select>
-                            </FormControl>
-                            <FormControlLabel
-                                control={(
-                                    <Checkbox
-                                        onChange={onFilterIsArchiveHandler}
-                                        defaultChecked={filters.isArchive}
-                                    />
-                                )}
-                                label="В архиве"
-                            />
-                        </Box>
-                    </Dialog>
-                    <Stack sx={{ pb: 2 }} gap={1} direction="row">
-                        <Paper
-                            elevation={5}
-                            component="form"
-                            sx={{
-                                p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%',
-                            }}
-                        >
-                            <InputBase
-                                sx={{ ml: 1, flex: 1 }}
-                                placeholder="Поиск"
-                                onChange={onSearchHandler}
-                            />
-                            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-                            <IconButton
-                                onClick={onOpenModal}
-                                color="primary"
-                                sx={{ p: '10px' }}
+        <Box>
+            <Dialog open={showModal} onClose={onCloseModal}>
+                <DialogTitle>Настройки поиска</DialogTitle>
+                <Box sx={{ px: 2, pb: 2 }}>
+                    <Stack sx={{ mb: 2 }} gap={2} direction={{ xs: 'column', sm: 'row' }}>
+                        <FormControl sx={{ minWidth: 120 }}>
+                            <InputLabel id="sort-type">Сортировать</InputLabel>
+                            <Select
+                                labelId="sort-type"
+                                value={sort.type}
+                                label="Сортировать"
+                                onChange={onChangeSortTypeHandler}
                             >
-                                <Tune />
-                            </IconButton>
-                        </Paper>
+                                {
+                                    Object.entries(SORT_TYPES).map(([key, value]) => (
+                                        <MenuItem
+                                            key={key}
+                                            value={key}
+                                        >
+                                            {value}
+                                        </MenuItem>
+                                    ))
+                                }
+                            </Select>
+                        </FormControl>
+                        <FormControl sx={{ minWidth: 120 }}>
+                            <InputLabel id="sort-order">Порядок</InputLabel>
+                            <Select
+                                labelId="sort-order"
+                                value={sort.order}
+                                label="Порядок"
+                                onChange={onChangeSortOrderHandler}
+                            >
+                                {
+                                    Object.entries(SORT_ORDERS).map(([key, value]) => (
+                                        <MenuItem
+                                            key={key}
+                                            value={key}
+                                        >
+                                            {value}
+                                        </MenuItem>
+                                    ))
+                                }
+                            </Select>
+                        </FormControl>
                     </Stack>
-                    <EmployeeCardList
-                        employees={employees}
+                    <FormControl fullWidth sx={{ minWidth: 120 }}>
+                        <InputLabel id="sort-type">Должность</InputLabel>
+                        <Select
+                            labelId="sort-type"
+                            value={filters.role}
+                            label="Должность"
+                            onChange={onFilterRoleHandler}
+                        >
+                            {
+                                Object.entries(STRING_ROLES).map(([key, value]) => (
+                                    <MenuItem
+                                        key={key}
+                                        value={key}
+                                    >
+                                        {value}
+                                    </MenuItem>
+                                ))
+                            }
+                            <MenuItem value={undefined}>
+                                Любая
+                            </MenuItem>
+                        </Select>
+                    </FormControl>
+                    <FormControlLabel
+                        control={(
+                            <Checkbox
+                                onChange={onFilterIsArchiveHandler}
+                                defaultChecked={filters.isArchive}
+                            />
+                        )}
+                        label="В архиве"
                     />
                 </Box>
-            </Container>
-        </div>
+            </Dialog>
+            <Stack sx={{ pb: 2 }} gap={1} direction="row">
+                <Paper
+                    elevation={5}
+                    component="form"
+                    sx={{
+                        p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%',
+                    }}
+                >
+                    <InputBase
+                        sx={{ ml: 1, flex: 1 }}
+                        placeholder="Поиск"
+                        onChange={onSearchHandler}
+                    />
+                    <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+                    <IconButton
+                        onClick={onOpenModal}
+                        color="primary"
+                        sx={{ p: '10px' }}
+                    >
+                        <Tune />
+                    </IconButton>
+                </Paper>
+            </Stack>
+            <EmployeeCardList
+                employees={employees}
+                isLoading={isLoading}
+            />
+        </Box>
     );
 };
