@@ -1,7 +1,7 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { $api } from 'shared/api/api';
 import { employeesReducer } from 'entities/Employee';
-import { editEmployeeFormReducer } from 'features/EditEmployeeForm';
+import { employeeFormReducer } from 'features/EmployeeForm';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 
 export function createReduxStore(
@@ -9,7 +9,7 @@ export function createReduxStore(
 ) {
     const rootReducer: ReducersMapObject<StateSchema> = {
         employees: employeesReducer,
-        editEmployeeForm: editEmployeeFormReducer,
+        employeeForm: employeeFormReducer,
     };
 
     const extraArg: ThunkExtraArg = {

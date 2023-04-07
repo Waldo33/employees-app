@@ -1,3 +1,9 @@
+export { addEmployee } from './model/services/addEmployee/addEmployee';
+
+export { EmployeeArchiveCheckbox } from './ui/EmployeeArchiveCheckbox/EmployeeArchiveCheckbox';
+
+export { EmployeeRoleSelect } from './ui/EmployeeRoleSelect/EmployeeRoleSelect';
+
 export { getEmployeesIsLoading } from './model/selectors/getEmployeesIsLoading/getEmployeesIsLoading';
 
 export { getSort } from './model/selectors/getSort/getSort';

@@ -1,10 +1,10 @@
 import { AxiosInstance } from 'axios';
 import { EmployeesSchema } from 'entities/Employee';
-import { EditEmployeeFormSchema } from 'features/EditEmployeeForm';
+import { EmployeeFormSchema } from 'features/EmployeeForm';
 
 export interface StateSchema {
     employees: EmployeesSchema;
-    editEmployeeForm: EditEmployeeFormSchema;
+    employeeForm: EmployeeFormSchema;
 }
 
 export interface ThunkExtraArg {

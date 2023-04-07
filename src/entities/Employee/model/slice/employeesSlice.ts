@@ -3,6 +3,7 @@ import { fetchEmployees } from 'entities/Employee/model/services/fetchEmployees/
 import { Employee, EmployeeRole } from 'entities/Employee/model/types/employee';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { EmployeesSchema, SortOrder, SortType } from '../types/employeesSchema';
+import { addEmployee } from '../services/addEmployee/addEmployee';
 
 const initialState: EmployeesSchema = {
     isLoading: false,
@@ -48,6 +49,10 @@ export const employeesSlice = createSlice({
         setFilterIsArchive: (state, action: PayloadAction<boolean>) => {
             state.filters.isArchive = action.payload;
         },
+        resetFilters: (state) => {
+            state.filters.role = undefined;
+            state.filters.isArchive = false;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -60,6 +65,18 @@ export const employeesSlice = createSlice({
                 employeesAdapter.setAll(state, action.payload);
             })
             .addCase(fetchEmployees.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(addEmployee.pending, (state) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(addEmployee.fulfilled, (state, action: PayloadAction<Employee>) => {
+                state.isLoading = false;
+                employeesAdapter.addOne(state, action.payload);
+            })
+            .addCase(addEmployee.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

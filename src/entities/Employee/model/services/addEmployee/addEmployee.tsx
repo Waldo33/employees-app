@@ -1,11 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Employee } from '../../types/employee';
-import { fetchEmployees } from '../fetchEmployees/fetchEmployees';
 
-export const editEmployeeById = createAsyncThunk<Employee, Employee, ThunkConfig<string>>(
-    'employees/editEmployeeById',
-    async (employee, { extra, rejectWithValue, dispatch }) => {
+export const addEmployee = createAsyncThunk<Employee, Omit<Employee, 'id'>, ThunkConfig<string>>(
+    'employees/addEmployee',
+    async (employee, { extra, rejectWithValue }) => {
         const { birthday, name, phone } = employee;
 
         if (!birthday || !name || !phone) {
@@ -13,13 +12,11 @@ export const editEmployeeById = createAsyncThunk<Employee, Employee, ThunkConfig
         }
 
         try {
-            const response = await extra.api.patch<Employee>(`/employees/${employee.id}`, employee);
+            const response = await extra.api.post<Employee>('/employees', employee);
 
             if (!response.data) {
                 return rejectWithValue('error');
             }
-
-            dispatch(fetchEmployees());
 
             return response.data;
         } catch (e) {

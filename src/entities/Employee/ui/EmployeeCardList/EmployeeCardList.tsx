@@ -36,7 +36,7 @@ export const EmployeeCardList: FC<EmployeeCardListProps> = (props) => {
                 {
                     employees.map((employee) => (
                         <EmployeeCard
-                            onClick={() => navigate(`/${employee.id}`)}
+                            onClick={() => navigate(`/employees/${employee.id}`)}
                             key={employee.id}
                             employee={employee}
                         />

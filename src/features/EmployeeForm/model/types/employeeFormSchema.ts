@@ -1,8 +1,8 @@
 import { Employee } from 'entities/Employee';
 
-export interface EditEmployeeFormSchema {
+export interface EmployeeFormSchema {
     isLoading: boolean;
     error?: string;
     data?: Employee;
-    formData?: Employee;
+    formData: Omit<Employee, 'id'>;
 }

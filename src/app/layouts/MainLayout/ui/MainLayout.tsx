@@ -1,9 +1,10 @@
-import { Home } from '@mui/icons-material';
+import { Add, Home } from '@mui/icons-material';
 import {
     AppBar, Box, Container, CssBaseline, IconButton, Toolbar, Typography,
 } from '@mui/material';
 import { fetchEmployees, getSearchQuery, getSort } from 'entities/Employee';
 import { getFilters } from 'entities/Employee/model/selectors/getFilters/getFilters';
+import { employeeFormActions } from 'features/EmployeeForm/model/slice/employeeFormSlice';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -20,6 +21,11 @@ export const MainLayout = () => {
         dispatch(fetchEmployees());
     }, [dispatch, sort, filters, query]);
 
+    const onClickAdd = () => {
+        dispatch(employeeFormActions.resetForm());
+        navigate('/employees/add');
+    };
+
     return (
         <div>
             <CssBaseline />
@@ -31,10 +37,17 @@ export const MainLayout = () => {
                     >
                         <Home />
                     </IconButton>
+                    <Box flexGrow={1} />
+                    <IconButton
+                        onClick={onClickAdd}
+                        color="inherit"
+                    >
+                        <Add />
+                    </IconButton>
                 </Toolbar>
             </AppBar>
             <Container>
-                <Box component="main" sx={{ p: 2 }}>
+                <Box component="main" sx={{ p: 1 }}>
                     <Toolbar />
                     <Outlet />
                 </Box>
