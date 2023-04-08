@@ -8,7 +8,7 @@
     "start": "webpack serve --env port=3000",
     "start:server": "json-server --watch json-server/db.json --port=8000",
     "start:dev": "concurrently 'npm run start' 'npm run start:server'",
-    "build:prod": "webpack --env mode=production apiUrl=https://64314c4a3adb159651695e92.mockapi.io",
+    "build:prod": "webpack --env mode=production apiUrl=https://employee-api-ahwr.onrender.com",
     "build:dev": "webpack --env mode=development",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
