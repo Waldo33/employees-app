@@ -1,4 +1,7 @@
-import { Box, Button } from '@mui/material';
+import { Home } from '@mui/icons-material';
+import {
+    Alert, AlertTitle, Box, Button, Card, CardActions, CardContent, IconButton, Skeleton, Stack,
+} from '@mui/material';
 import { editEmployeeById } from 'entities/Employee/model/services/editEmployeeById/editEmployeeById';
 import { fetchEmployeeById } from 'entities/Employee/model/services/fetchEmployeeById/fetchEmployeeById';
 import {
@@ -7,7 +10,7 @@ import {
 import { employeeFormActions } from 'features/EmployeeForm/model/slice/employeeFormSlice';
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const EmployeeEditPage = () => {
@@ -17,6 +20,7 @@ export const EmployeeEditPage = () => {
     const isLoading = useSelector(getEmployeeFormIsLoading);
     const error = useSelector(getEmployeeFormError);
     const [readOnly, setReadOnly] = useState(true);
+    const navigate = useNavigate();
 
     const onSaveClick = useCallback(() => {
         if (employee && id) {
@@ -40,19 +44,46 @@ export const EmployeeEditPage = () => {
 
     if (error) {
         return (
-            <div>Error</div>
+            <Box>
+                <Alert
+                    severity="error"
+                    action={(
+                        <IconButton
+                            onClick={() => navigate('/')}
+                            color="inherit"
+                        >
+                            <Home />
+                        </IconButton>
+                    )}
+                >
+                    <AlertTitle>Сотрудник не найден</AlertTitle>
+                    Не удалось найти сотрудника с id
+                    {' '}
+                    <strong>{id}</strong>
+                </Alert>
+            </Box>
         );
     }
 
     if (isLoading) {
         return (
-            <div>Loading...</div>
-        );
-    }
-
-    if (!employee) {
-        return (
-            <div>Сотрудник не найден</div>
+            <Card
+                elevation={5}
+            >
+                <CardContent>
+                    <Stack sx={{ pt: 2 }} gap={2}>
+                        <Skeleton variant="rounded" height={50} />
+                        <Skeleton variant="rounded" height={50} />
+                        <Skeleton variant="rounded" height={50} />
+                        <Skeleton variant="rounded" height={50} />
+                        <Skeleton variant="text" width="50%" />
+                    </Stack>
+                </CardContent>
+                <CardActions>
+                    <Box flexGrow={1} />
+                    <Skeleton variant="rounded" width={75} height={25} />
+                </CardActions>
+            </Card>
         );
     }
 

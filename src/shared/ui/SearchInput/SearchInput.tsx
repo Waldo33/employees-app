@@ -1,8 +1,8 @@
 import {
-    Divider, IconButton, InputBase, Paper,
+    Divider, IconButton, InputBase, Paper, debounce,
 } from '@mui/material';
 import {
-    ChangeEvent, FC, ReactNode, useCallback,
+    ChangeEvent, FC, ReactNode, useCallback, useMemo,
 } from 'react';
 
 interface SearchInputProps {
@@ -17,6 +17,8 @@ const SearchInput: FC<SearchInputProps> = (props) => {
         onSearch(event.target.value);
     }, [onSearch]);
 
+    const searchDelayed = useMemo(() => debounce(onSearchHandler, 400), [onSearchHandler]);
+
     return (
         <Paper
             elevation={5}
@@ -29,7 +31,7 @@ const SearchInput: FC<SearchInputProps> = (props) => {
                 disabled={disabled}
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Поиск"
-                onChange={onSearchHandler}
+                onChange={searchDelayed}
             />
             {
                 children && (

@@ -36,7 +36,6 @@ export const EmployeesPage = () => {
         <Box>
             <Box sx={{ mb: 2, mt: 1 }}>
                 <SearchInput
-                    disabled={isLoading}
                     onSearch={onSearch}
                 >
                     <IconButton
