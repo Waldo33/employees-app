@@ -1,5 +1,7 @@
 import { Refresh } from '@mui/icons-material';
-import {Alert, AlertTitle, Box, IconButton } from '@mui/material';
+import {
+    Alert, AlertTitle, Box, IconButton,
+} from '@mui/material';
 import React, { ErrorInfo, ReactNode, Suspense } from 'react';
 
 interface ErrorBoundaryProps {
@@ -33,15 +35,22 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
             // You can render any custom fallback UI
             return (
                 <Suspense fallback="">
-                    <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <Alert severity="error" action={
-                            <IconButton
-                                onClick={() => window.location.reload()}
-                                color="inherit"
-                            >
-                                <Refresh/>
-                            </IconButton>
-                                }
+                    <Box sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                    >
+                        <Alert
+                            severity="error"
+                            action={(
+                                <IconButton
+                                    onClick={() => window.location.reload()}
+                                    color="inherit"
+                                >
+                                    <Refresh />
+                                </IconButton>
+                            )}
                         >
                             <AlertTitle>Непредвиденная ошибка</AlertTitle>
                             Попробуйте перезагрузить страницу...
