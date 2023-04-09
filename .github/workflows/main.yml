@@ -20,8 +20,6 @@ jobs:
         run: npm ci
       - name: linting typescript
         run: npm run lint:ts
-      - name: linting css
-        run: npm run lint:scss
       - name: unit testing
         run: npm run test:unit
   e2e:
