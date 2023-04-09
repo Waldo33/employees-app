@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ main, master ]
 jobs:
-  unit and linting:
+  unit_and_linting:
     runs-on: ubuntu-latest
     strategy:
       matrix:
