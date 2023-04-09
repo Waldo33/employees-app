@@ -20,10 +20,6 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.17.5",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7",
-    "@babel/preset-typescript": "^7.16.7",
     "@playwright/test": "^1.32.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
     "@svgr/webpack": "^6.5.1",
@@ -39,8 +35,6 @@
     "@types/webpack-bundle-analyzer": "^4.6.0",
     "@types/webpack-dev-server": "^4.7.2",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
-    "babel-loader": "^8.2.3",
-    "babel-plugin-i18next-extract": "^0.8.3",
     "css-loader": "^6.6.0",
     "eslint": "^8.33.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -72,7 +66,8 @@
     "webpack": "^5.77.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.7.2"
+    "webpack-dev-server": "^4.7.2",
+    "concurrently": "^7.6.0"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -81,7 +76,6 @@
     "@mui/material": "^5.11.16",
     "@reduxjs/toolkit": "^1.8.0",
     "axios": "^0.26.1",
-    "concurrently": "^7.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-input-mask": "^3.0.0-alpha.2",
