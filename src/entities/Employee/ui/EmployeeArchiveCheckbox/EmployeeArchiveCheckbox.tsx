@@ -1,14 +1,17 @@
-import { Checkbox, FormControlLabel } from '@mui/material';
+import { Checkbox, FormControlLabel, InputBaseComponentProps } from '@mui/material';
 import { ChangeEvent, FC } from 'react';
 
 interface EmployeeArchiveCheckboxProps {
     value?: boolean;
     onChange?: (checked: boolean) => void;
     disabled?: boolean;
+    inputProps?: InputBaseComponentProps;
 }
 
 export const EmployeeArchiveCheckbox: FC<EmployeeArchiveCheckboxProps> = (props) => {
-    const { value, onChange, disabled } = props;
+    const {
+        value, onChange, disabled, inputProps,
+    } = props;
 
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>, checked: boolean) => {
         onChange?.(checked);
@@ -21,6 +24,7 @@ export const EmployeeArchiveCheckbox: FC<EmployeeArchiveCheckboxProps> = (props)
                     disabled={disabled}
                     onChange={onChangeHandler}
                     checked={value}
+                    inputProps={inputProps}
                 />
             )}
             label="В архиве"

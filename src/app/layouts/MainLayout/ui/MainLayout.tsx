@@ -32,6 +32,7 @@ export const MainLayout = () => {
             <AppBar>
                 <Toolbar>
                     <IconButton
+                        data-testid="homeBtn"
                         onClick={() => navigate('/')}
                         color="inherit"
                     >
@@ -39,6 +40,7 @@ export const MainLayout = () => {
                     </IconButton>
                     <Box flexGrow={1} />
                     <IconButton
+                        data-testid="addBtn"
                         onClick={onClickAdd}
                         color="inherit"
                     >

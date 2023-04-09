@@ -22,9 +22,11 @@ export const EmployeeAddPage = () => {
     return (
         <Box>
             <EmployeeForm
+                data-testid="employee-form"
                 employee={formData}
             >
                 <Button
+                    data-testid="createBtn"
                     onClick={onClickCreate}
                     startIcon={<Add />}
                     variant="contained"

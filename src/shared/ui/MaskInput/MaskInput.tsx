@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { InputBaseComponentProps, InputProps, TextField } from '@mui/material';
 import { ChangeEvent, FC } from 'react';
 import ReactInputMask from 'react-input-mask';
 
@@ -8,11 +8,12 @@ interface MaskInputProps {
     onChange?: (value: string) => void;
     disabled?: boolean;
     label?: string;
+    inputProps?: InputBaseComponentProps;
 }
 
 export const MaskInput: FC<MaskInputProps> = (props) => {
     const {
-        mask, value, onChange, disabled, label,
+        mask, value, onChange, disabled, label, inputProps,
     } = props;
 
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -22,12 +23,16 @@ export const MaskInput: FC<MaskInputProps> = (props) => {
     return (
         (
             <ReactInputMask
+                data-testid="mask"
                 mask={mask}
                 value={value}
                 onChange={onChangeHandler}
                 disabled={disabled}
             >
-                <TextField label={label} />
+                <TextField
+                    label={label}
+                    inputProps={inputProps}
+                />
             </ReactInputMask>
         )
     );

@@ -53,6 +53,9 @@ export const EmployeeForm: FC<EmployeeFormProps> = (props) => {
                         label="Имя"
                         value={employee?.name}
                         onChange={onEditName}
+                        inputProps={{
+                            'data-testid': 'nameInput',
+                        }}
                     />
                     <MaskInput
                         mask="+7 (999) 999-9999"
@@ -60,6 +63,9 @@ export const EmployeeForm: FC<EmployeeFormProps> = (props) => {
                         onChange={onEditPhone}
                         disabled={readOnly}
                         label="Телефон"
+                        inputProps={{
+                            'data-testid': 'phoneInput',
+                        }}
                     />
                     <MaskInput
                         mask="99.99.9999"
@@ -67,16 +73,25 @@ export const EmployeeForm: FC<EmployeeFormProps> = (props) => {
                         label="Дата рождения"
                         value={employee?.birthday}
                         onChange={onEditBirthday}
+                        inputProps={{
+                            'data-testid': 'birthdayInput',
+                        }}
                     />
                     <EmployeeRoleSelect
                         value={employee?.role}
                         disabled={readOnly}
                         onChange={onChangeRole}
+                        inputProps={{
+                            'data-testid': 'roleSelect',
+                        }}
                     />
                     <EmployeeArchiveCheckbox
                         value={employee?.isArchive}
                         disabled={readOnly}
                         onChange={onChangeIsArchive}
+                        inputProps={{
+                            'data-testid': 'archiveCheckbox',
+                        }}
                     />
                 </Stack>
             </CardContent>
