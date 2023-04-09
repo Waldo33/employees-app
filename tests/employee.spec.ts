@@ -4,23 +4,28 @@ test('create employee', async ({ page }) => {
     await page.goto('/');
 
     await page.getByTestId('addBtn').click();
+    await page.waitForURL('/employees/add');
 
     const nameInput = await page.getByTestId('nameInput');
+    await nameInput.isVisible();
     await nameInput.click();
     await nameInput.fill('Тест');
 
     const phoneInput = await page.getByTestId('phoneInput');
+    await phoneInput.isVisible();
     await phoneInput.click();
     await phoneInput.fill('+7 (999) 999-99999');
 
     const birthdayInput = await page.getByTestId('birthdayInput');
+    await birthdayInput.isVisible();
     await birthdayInput.click();
     await birthdayInput.fill('12.05.2002');
 
     await page.getByTestId('roleSelect').click();
     await page.getByRole('option', { name: 'Официант' }).click();
 
-    await page.getByTestId('archiveFlag').check();
+    const archiveFlag = await page.getByTestId('archiveFlag');
+    await archiveFlag.check();
 
     await page.getByTestId('createBtn').click();
 });

@@ -46,4 +46,69 @@ describe('employeeFormSlice.test', () => {
             formData: emptyForm,
         });
     });
+
+    test('test setName', () => {
+        const state: DeepPartial<EmployeeFormSchema> = {
+            formData: emptyForm,
+        };
+
+        expect(employeeFormReducer(
+            state as EmployeeFormSchema,
+            employeeFormActions.setName('test123'),
+        )).toEqual({
+            formData: { ...emptyForm, name: 'test123' },
+        });
+    });
+
+    test('test setRole', () => {
+        const state: DeepPartial<EmployeeFormSchema> = {
+            formData: emptyForm,
+        };
+
+        expect(employeeFormReducer(
+            state as EmployeeFormSchema,
+            employeeFormActions.setRole('driver'),
+        )).toEqual({
+            formData: { ...emptyForm, role: 'driver' },
+        });
+    });
+
+    test('test setPhone', () => {
+        const state: DeepPartial<EmployeeFormSchema> = {
+            formData: emptyForm,
+        };
+
+        expect(employeeFormReducer(
+            state as EmployeeFormSchema,
+            employeeFormActions.setPhone('99999999'),
+        )).toEqual({
+            formData: { ...emptyForm, phone: '99999999' },
+        });
+    });
+
+    test('test setIsArchive', () => {
+        const state: DeepPartial<EmployeeFormSchema> = {
+            formData: emptyForm,
+        };
+
+        expect(employeeFormReducer(
+            state as EmployeeFormSchema,
+            employeeFormActions.setIsArchive(true),
+        )).toEqual({
+            formData: { ...emptyForm, isArchive: true },
+        });
+    });
+
+    test('test setIsArchive', () => {
+        const state: DeepPartial<EmployeeFormSchema> = {
+            formData: emptyForm,
+        };
+
+        expect(employeeFormReducer(
+            state as EmployeeFormSchema,
+            employeeFormActions.setIsArchive(true),
+        )).toEqual({
+            formData: { ...emptyForm, isArchive: true },
+        });
+    });
 });

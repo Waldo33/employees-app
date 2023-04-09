@@ -2,7 +2,7 @@ import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolki
 import { fetchEmployees } from 'entities/Employee/model/services/fetchEmployees/fetchEmployees';
 import { Employee, EmployeeRole } from 'entities/Employee/model/types/employee';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { addEmployee } from 'src/entities/Employee/model/services/addEmployee/addEmployee';
+import { addEmployee } from '../services/addEmployee/addEmployee';
 import { EmployeesSchema, SortOrder, SortType } from '../types/employeesSchema';
 
 const initialState: EmployeesSchema = {
