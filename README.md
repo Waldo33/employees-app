@@ -28,3 +28,4 @@
 - Сохранение фильтров в localStorage
 - [Ленивые компоненты](https://legacy.reactjs.org/docs/code-splitting.html "Ленивые компоненты") и [динамически создаваемые/удаляемые редьюсеры](https://redux.js.org/usage/code-splitting "динамически создаваемые/удаляемые редьюсеры")
 - [RTL-тесты](https://testing-library.com/docs/react-testing-library/intro/ "RTL-тесты")
+- Валидация полей формы с отображением ошибок по каждому полю с помощью react-hook-form или собственной валидации.
