@@ -32,6 +32,9 @@ const SearchInput: FC<SearchInputProps> = (props) => {
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Поиск"
                 onChange={searchDelayed}
+                inputProps={{
+                    'data-testid': 'Search',
+                }}
             />
             {
                 children && (

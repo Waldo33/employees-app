@@ -11,4 +11,12 @@ describe('getEmployeesIsLoading.test', () => {
 
         expect(getEmployeesIsLoading(state as StateSchema)).toEqual(true);
     });
+
+    test('should work with empty state', () => {
+        const state: DeepPartial<StateSchema> = {
+            employees: {},
+        };
+
+        expect(getEmployeesIsLoading(state as StateSchema)).toEqual(false);
+    });
 });

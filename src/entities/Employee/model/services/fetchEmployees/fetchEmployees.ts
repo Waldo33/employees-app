@@ -40,10 +40,6 @@ export const fetchEmployees = createAsyncThunk<Employee[], void, ThunkConfig<str
                 },
             );
 
-            if (!response.data) {
-                throw new Error('no data');
-            }
-
             return response.data;
         } catch (e) {
             return rejectWithValue('error');

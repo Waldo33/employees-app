@@ -15,7 +15,8 @@
     "lint:scss": "npx stylelint \"**/*.scss\" --formatter 'unix'",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
-    "test:e2e": "npx playwright test"
+    "test:e2e": "npx playwright test",
+    "test:e2e:report": "npx playwright show-report"
   },
   "license": "ISC",
   "devDependencies": {

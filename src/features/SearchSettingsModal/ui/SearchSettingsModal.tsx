@@ -49,7 +49,10 @@ export const SearchSettingsModal: FC<SearchSettingsModalProps> = (props) => {
             <DialogTitle>Настройки поиска</DialogTitle>
             <Box sx={{ px: 2, pb: 2 }}>
                 <Stack sx={{ mb: 2 }} gap={2} direction={{ xs: 'column', sm: 'row' }}>
-                    <FormControl sx={{ minWidth: 120 }}>
+                    <FormControl
+                        sx={{ minWidth: 120 }}
+                        data-testid="sortType"
+                    >
                         <InputLabel id="sort-type">Сортировать</InputLabel>
                         <Select
                             labelId="sort-type"
@@ -69,7 +72,10 @@ export const SearchSettingsModal: FC<SearchSettingsModalProps> = (props) => {
                             }
                         </Select>
                     </FormControl>
-                    <FormControl sx={{ minWidth: 120 }}>
+                    <FormControl
+                        sx={{ minWidth: 120 }}
+                        data-testid="sortOrder"
+                    >
                         <InputLabel id="sort-order">Порядок</InputLabel>
                         <Select
                             labelId="sort-order"

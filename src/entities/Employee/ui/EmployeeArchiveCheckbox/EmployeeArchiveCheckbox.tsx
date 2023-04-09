@@ -25,6 +25,7 @@ export const EmployeeArchiveCheckbox: FC<EmployeeArchiveCheckboxProps> = (props)
                     onChange={onChangeHandler}
                     checked={value}
                     inputProps={inputProps}
+                    data-testid="archiveFlag"
                 />
             )}
             label="В архиве"

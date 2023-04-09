@@ -39,6 +39,7 @@ export const EmployeesPage = () => {
                     onSearch={onSearch}
                 >
                     <IconButton
+                        data-testid="openModal"
                         disabled={isLoading}
                         onClick={onOpenModal}
                         color="primary"

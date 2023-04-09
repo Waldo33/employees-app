@@ -81,17 +81,17 @@ export const EmployeeForm: FC<EmployeeFormProps> = (props) => {
                         value={employee?.role}
                         disabled={readOnly}
                         onChange={onChangeRole}
-                        inputProps={{
-                            'data-testid': 'roleSelect',
-                        }}
+                        // inputProps={{
+                        //     'data-testid': 'roleSelect',
+                        // }}
                     />
                     <EmployeeArchiveCheckbox
                         value={employee?.isArchive}
                         disabled={readOnly}
                         onChange={onChangeIsArchive}
-                        inputProps={{
-                            'data-testid': 'archiveCheckbox',
-                        }}
+                        // inputProps={{
+                        //     'data-testid': 'archiveCheckbox',
+                        // }}
                     />
                 </Stack>
             </CardContent>

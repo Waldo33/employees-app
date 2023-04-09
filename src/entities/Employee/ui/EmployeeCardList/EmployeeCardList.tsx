@@ -52,7 +52,7 @@ export const EmployeeCardList: FC<EmployeeCardListProps> = (props) => {
     }
 
     return (
-        <Box>
+        <Box data-testid="EmployeesList">
             <Stack spacing={2}>
                 {
                     employees.map((employee) => (

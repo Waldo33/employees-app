@@ -23,7 +23,7 @@ export const EmployeeRoleSelect: FC<EmployeeRoleSelectProps> = (props) => {
     };
 
     return (
-        <FormControl fullWidth sx={{ minWidth: 120 }}>
+        <FormControl fullWidth sx={{ minWidth: 120 }} data-testid="roleSelect">
             <InputLabel id="sort-type">Должность</InputLabel>
             <Select
                 disabled={disabled}
