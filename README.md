@@ -47,7 +47,7 @@
 ### CD
 Фронтенд задеплоил на [Netlify](https://www.netlify.com/ "Netlify"), бекэнд с json-сервером на [Render.com](https://render.com/ "Render.com").
 
-## Что хотел сделать, но не успел
+## Что можно улучшить
 - Сделать хук [useObserverIntersection](https://usehooks-ts.com/react-hook/use-intersection-observer "useObserverIntersection") для создания ленивой подгрузки сотрудников на главной странице
 - Сохранение фильтров в localStorage
 - [Ленивые компоненты](https://legacy.reactjs.org/docs/code-splitting.html "Ленивые компоненты") и [динамически создаваемые/удаляемые редьюсеры](https://redux.js.org/usage/code-splitting "динамически создаваемые/удаляемые редьюсеры")
