@@ -38,8 +38,6 @@ jobs:
       run: npm ci
     - name: Build project
       run: npm run build:dev
-    - name: Serve build
-      run: npm i serve && serve ./build
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
