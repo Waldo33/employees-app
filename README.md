@@ -14,16 +14,21 @@
 
 ### Сборка
 `npm run build:dev` - сборка в dev-режиме без минификации и с source-maps
+
 `npm run build:prod` - сборка в prod-режиме с минификацией
+
 `serve -s build` - запустить собранный проект
 
 ### Линтеры
 `npm run lint:ts` - прогнать eslint
+
 `npm run lint:ts:fix` - поправить ошибки линтера
 
 ### Тестирование
 `npm run test:unit` - запустить unit-тесты
+
 `npm run test:e2e` - запустить локально e2e-тесты
+
 `npm run test:e2e:report` - посмотреть последний отчет
 
 ## Тесты
