@@ -51,5 +51,5 @@
 - Сделать хук [useObserverIntersection](https://usehooks-ts.com/react-hook/use-intersection-observer "useObserverIntersection") для создания ленивой подгрузки сотрудников на главной странице
 - Сохранение фильтров в localStorage
 - Разбить код на [ленивые компоненты](https://react.dev/reference/react/lazy "ленивые компоненты") и [динамически создаваемые/удаляемые редьюсеры](https://redux.js.org/usage/code-splitting "динамически создаваемые/удаляемые редьюсеры")
-- [RTL-тесты](https://testing-library.com/docs/react-testing-library/intro/ "RTL-тесты")
+- Добавить [RTL-тесты](https://testing-library.com/docs/react-testing-library/intro/ "RTL-тесты")
 - Валидация полей формы с отображением ошибок по каждому полю с помощью react-hook-form или собственной валидации.
