@@ -9,6 +9,20 @@
 - [react-input-mask](https://www.npmjs.com/package/react-input-mask "react-input-mask")
 - [Material UI](https://mui.com/ "Material UI")
 
+## Demo
+
+### Список сотрудников
+![List of employees](/demo/1.png)
+
+### Редактирование сотрудника
+![Edit employee](/demo/2.png)
+
+### Создание нового сотрудника
+![Create new employee](/demo/3.png)
+
+### Настройки фильтров и сортировки
+![Filter and sort settings](/demo/4.png)
+
 ## Команды
 
 ### Запуск при разработке
