@@ -1,4 +1,5 @@
 # Employees App
+[![Netlify Status](https://api.netlify.com/api/v1/badges/82db67d3-662e-41f0-8be8-fb66f18ae7c0/deploy-status)](https://app.netlify.com/sites/merry-melba-8c1e85/deploys)
 
 ## Стек технологий
 - [React](https://ru.reactjs.org/ "React")
