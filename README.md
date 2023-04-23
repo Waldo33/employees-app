@@ -5,6 +5,7 @@
 - [React](https://ru.reactjs.org/ "React")
 - [Redux Toolkit](https://redux-toolkit.js.org/ "Redux Toolkit")
 - [Typescript](https://www.typescriptlang.org/ "Typescript")
+- [Feature-Sliced Design](https://feature-sliced.design/ "Feature-Sliced Design")
 - [react-input-mask](https://www.npmjs.com/package/react-input-mask "react-input-mask")
 - [Material UI](https://mui.com/ "Material UI")
 
@@ -46,7 +47,7 @@
 Написал небольшой [workflow](https://github.com/Waldo33/employees-app/blob/master/.github/workflows/main.yml "workflow") для прогона unit и e2e тестов
 
 ### CD
-Фронтенд задеплоил на [Netlify](https://www.netlify.com/ "Netlify"), бекэнд с json-сервером на [Render.com](https://render.com/ "Render.com").
+Фронтенд задеплоил на [Netlify](https://employees-app.tserkovnikov.ru/ "Netlify"), бекэнд с json-сервером на [Render.com](https://employee-api-ahwr.onrender.com/ "Render.com").
 
 ## Что можно улучшить
 - Сделать хук [useObserverIntersection](https://usehooks-ts.com/react-hook/use-intersection-observer "useObserverIntersection") для создания ленивой подгрузки сотрудников на главной странице
