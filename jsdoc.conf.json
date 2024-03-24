@@ -1,0 +1,30 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "source": {
+    "include": ["src"],
+    "includePattern": "\\.(jsx|js|ts|tsx)$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "plugins": [
+    "node_modules/better-docs/typescript",
+    "node_modules/better-docs/category",
+    "plugins/markdown",
+    "better-docs/component"
+  ],
+  "templates": {
+    "search": true,
+    "better-docs": {
+      "name": "Docs for employees-app"
+    }
+  },
+  "opts": {
+    "destination": "docs/",
+    "recurse": true,
+    "verbose": true,
+    "readme": "README.md",
+    "template": "./node_modules/better-docs"
+  }
+}
