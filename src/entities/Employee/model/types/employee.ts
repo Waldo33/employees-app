@@ -1,3 +1,6 @@
+/**
+ * @category entities
+ */
 export type EmployeeRole = 'driver' | 'waiter' | 'cook';
 
 /**
