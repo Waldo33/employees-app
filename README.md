@@ -9,6 +9,10 @@
 - [react-input-mask](https://www.npmjs.com/package/react-input-mask "react-input-mask")
 - [Material UI](https://mui.com/ "Material UI")
 
+## Документация
+
+Документация компонентов и функций [здесь](https://waldo33.github.io/employees-app)
+
 ## Команды
 
 ### Запуск при разработке
