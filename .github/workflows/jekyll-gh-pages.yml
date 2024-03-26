@@ -48,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: docs
-          path: ./
+          path: ./docs
           retention-days: 30
 
   # Deployment job
