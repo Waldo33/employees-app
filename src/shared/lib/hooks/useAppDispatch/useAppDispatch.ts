@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 /**
  * Типизированный {@link https://redux-toolkit.js.org/usage/usage-with-typescript#getting-the-dispatch-type | useDispatch}
  * @category shared
+ * @subcategory hooks
  * @function useAppDispatch
  * @returns {AppDispatch}
  */
