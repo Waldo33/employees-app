@@ -34,6 +34,12 @@ jobs:
         run: npm run test:unit
       - name: Build docs
         run: npm run docs
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: docs
+          path: docs/
+          retention-days: 30
   deploy:
     needs: docs
     environment:
