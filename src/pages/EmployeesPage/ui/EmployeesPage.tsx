@@ -15,10 +15,6 @@ import { Tune } from '@mui/icons-material';
 import { SearchSettingsModal } from 'features/SearchSettingsModal';
 import SearchInput from 'shared/ui/SearchInput/SearchInput';
 
-/**
- * @category pages
- * @component
- */
 export const EmployeesPage = () => {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useAppDispatch();
