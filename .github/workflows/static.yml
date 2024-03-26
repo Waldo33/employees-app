@@ -1,15 +1,9 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
-
+name: Pipeline
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["master"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
 permissions:
   contents: read
   pages: write
@@ -20,25 +14,26 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
 jobs:
   docs:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [ 16.x ]
     steps:
-    - uses: actions/checkout@v3
-    - name: Staring Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install dependencies
-      run: npm ci
-    - name: Build docs
-      run: npx run docs
-  # Single deploy job since we're just deploying
+      - uses: actions/checkout@v3
+      - name: Staring Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install modules
+        run: npm ci
+      - name: linting typescript
+        run: npm run lint:ts
+      - name: unit testing
+        run: npm run test:unit
+      - name: Build docs
+        run: npx run docs
   deploy:
     needs: docs
     environment:
