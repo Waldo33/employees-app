@@ -45,11 +45,10 @@ jobs:
         with:
           source: ./docs
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-pages-artifact@v2
         with:
-          name: github-pages
-          path: ./docs
-          retention-days: 30
+          name: 'github-pages'
+          path: 'docs'
 
   # Deployment job
   deploy:
