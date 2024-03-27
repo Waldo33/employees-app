@@ -1,4 +1,4 @@
-name: Pipeline
+name: Run linter, unit and e2e
 on:
   push:
     branches: [ main, master ]
